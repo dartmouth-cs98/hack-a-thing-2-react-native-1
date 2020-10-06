@@ -1,0 +1,1 @@
+Commit 1: This is the initial commit for the react-native demo using the expo managed workflow. I just changed the introductory message to say "Hello, World!"
