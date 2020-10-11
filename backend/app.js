@@ -1,3 +1,4 @@
+// blueprint from https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');

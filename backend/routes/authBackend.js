@@ -34,7 +34,7 @@ router.get("/", function(req, res) {
     });
 });
 
-
+//I tried and failed to get the following two routes done in one route
 router.get("/checkUsername", function(req, res) { 
     MongoClient.connect(cloud_url, function(err, db) { 
         var this_db = db.db('demoDB');

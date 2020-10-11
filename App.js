@@ -28,6 +28,7 @@ class LoginPage extends React.Component {
     //spongebob: https://www.google.com/url?sa=i&url=https%3A%2F%2Fnymag.com%2Fintelligencer%2F2017%2F05%2Fwhat-is-the-mocking-spongebob-capitalized-letters-chicken-meme.html&psig=AOvVaw2NbIZslD3_VvkC5NaOcdlL&ust=1602181726451000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKjdmpqOo-wCFQAAAAAdAAAAABAD
     //yeah boy: https://www.google.com/url?sa=i&url=https%3A%2F%2Fknowyourmeme.com%2Fmemes%2Fmy-longest-yeah-boy-ever&psig=AOvVaw0AEAJYYRMdV1m0NtfSJ06u&ust=1602181852377000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPj16dKOo-wCFQAAAAAdAAAAABAD
     return (
+      //Learned about the basic components from here: https://reactnative.dev/docs/components-and-apis#basic-components
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.container}>
         <Image style={styles.small_image} source={require("./dory.jpg")}></Image>
@@ -58,6 +59,7 @@ class LoginPage extends React.Component {
   }
 
   validatePW() { 
+    //fetch api info from https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     //password send unencrypted--bad security (stretch goal)
     var params = "username=" + this.state.uname + "&password=" + this.state.pw
     fetch("http://" + localip + ":" + backend_port + "/authUser?" + params)
@@ -68,10 +70,12 @@ class LoginPage extends React.Component {
   attemptLogin(text) { 
     var authSucceeded = (text != "bad_pw" && text != "user_not_found");
     if (authSucceeded) { 
+      //not sure if this is how to do login stuff, but I found info on params
+      //in the navigation docs: https://reactnavigation.org/docs/params
       this.props.navigation.navigate('User Page', {username: this.state.uname, team: text});
     }
     else { 
-      //https://reactnative.dev/docs/alert
+      //learned this from https://reactnative.dev/docs/alert
       Alert.alert("Unrecognized username/password combo")
     }
   }
@@ -95,6 +99,7 @@ class SignUpPage extends React.Component {
 
   render() { 
     return (
+       //picker usage info from: https://github.com/react-native-community/react-native-picker
       <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
         <Text style={styles.login_label}>Username</Text>
@@ -141,6 +146,7 @@ class SignUpPage extends React.Component {
       Alert.alert('This user already exists!');
     }
     else { 
+      //Use similar POST format as hack-a-thing-1
       var params = "username=" + this.state.uname + "&password=" + this.state.pw + "&team=" + this.state.team
       fetch("http://" + localip + ":" + backend_port + "/authUser", 
       {
@@ -167,6 +173,7 @@ class UserPage extends React.Component {
 
   render() { 
     return (
+      //Again, not sure if route params are ideal for this use: https://reactnavigation.org/docs/params
       <View style={styles.container}>
         <Image style={styles.small_image} source={require('./longestyeahboy.jpg')}></Image>
         <Text style={styles.login_label}>Welcome, {this.props.route.params.username}!</Text>
@@ -176,6 +183,7 @@ class UserPage extends React.Component {
   }
 }
 
+//Basic nav info: https://reactnavigation.org/docs/hello-react-navigation/
 const Stack = createStackNavigator();
 
 export default function App() {
